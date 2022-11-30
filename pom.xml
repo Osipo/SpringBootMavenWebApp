@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>SpringMvnWebApp</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.11</maven.compiler.source>
+    <maven.compiler.target>1.11</maven.compiler.target>
+    <java.version>11</java.version>
+    <mssql.driver.version>9.4.1.jre11</mssql.driver.version>
+
+    <junit-jupiter.version>5.4.0</junit-jupiter.version>
+    <junit.version>4.12</junit.version>
+    <mockito.version>1.10.19</mockito.version>
+    <protonpack.version>1.16</protonpack.version>
+    <commom-ios.version>2.10.0</commom-ios.version>
+    <skipPluginPhase>none</skipPluginPhase>
+
+    <!--java:exec properties-->
+    <exec.mainClass>org.example.App</exec.mainClass> <!--exec main class-->
+    <!--<exec.args>-Xmx4g -XX:MaxPermSize=512m -javaagent:C:\Users\noupk\.m2\repository\org\springframework\spring-instrument\3.1.4.RELEASE\spring-instrument-3.1.4.RELEASE.jar -Xbootclasspath/a:C:\Users\noupk\.m2\repository\org\springframework\spring-instrument\3.1.4.RELEASE\spring-instrument-3.1.4.RELEASE.jar</exec.args>-->
+
+
+
+    <spring-boot.version>2.4.3</spring-boot.version>
+    <hibernate.version>5.4.28.Final</hibernate.version>
+    <jaxb.version>2.3.2</jaxb.version> <!-- JAXB XML binders/message converters-->
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
+
+    <!-- Classic WebMVC-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <version>${spring-boot.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
+    <!-- DATA JPA, HIBERNATE-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
+
+    <!-- Connection pool Tomcat (default is Hikari but Tomcat is used at Spring boot below 2.0)-->
+    <!--
+    <dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-dbcp</artifactId>
+    <version>9.0.1</version>
+    </dependency>
+    -->
+
+    <!--Spring H2 JDBC-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
+    <!--MS SQL JDBC driver-->
+    <!--
+      !!!!
+      you must manually download mssql-jdbc-auth-${mssql.driver.version}.x86/64.dll
+      and put dll file into jdk/bin and jdk/lib dirs.
+      Versions must be the same as package!
+      the dll files are not supplied with maven package.
+      !!!!
+    -->
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <version>${mssql.driver.version}</version>
+    </dependency>
+
+    <!--H2 Hikari driver-->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>2.1.210</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!--XML Http converters-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-oxm</artifactId>
+      <version>5.3.20</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.19</version>
+    </dependency>
+
+
+    <!-- API, java.xml.bind module -->
+    <!-- For Hibernate JPA required-->
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>${jaxb.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>${jaxb.version}</version>
+    </dependency>
+    <!--
+    <dependency>
+    <groupId>javax.xml.bind</groupId>
+     <artifactId>jaxb-api</artifactId>
+    <version>2.3.0</version>
+    </dependency>
+    -->
+
+
+
+    <dependency>
+      <groupId>com.codepoetics</groupId>
+      <artifactId>protonpack</artifactId>
+      <version>${protonpack.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commom-ios.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.20</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.0</version>
+    </dependency>
+
+
+    <!--TEST LIBS -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+
+  </dependencies>
+
+  <profiles>
+
+    <!--PROFILE FOR DEVELOPMENT-->
+    <profile>
+      <id>dev</id>
+      <activation>
+        <property>
+          <name>environment</name>
+          <value>dev</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>id.copyResources</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <copy todir="${project.build.outputDirectory}">
+                      <fileset dir="src/main/resources/dev"/>
+                    </copy>
+                    <copy todir="${project.build.outputDirectory}">
+                      <fileset dir="src/main/resources/config"/>
+                    </copy>
+                  </tasks>
+                </configuration>
+              </execution>
+              <execution>
+                <id>id.copyTestResources</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <copy todir="${project.build.testOutputDirectory}">
+                      <fileset dir="src/test/resources/dev"/>
+                    </copy>
+                    <copy todir="${project.build.testOutputDirectory}">
+                      <fileset dir="src/test/resources/config"/>
+                    </copy>
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <executions>
+              <execution>
+                <id>default-compile</id>
+                <phase>${skipPluginPhase}</phase>
+              </execution>
+              <execution>
+                <id>default-testCompile</id>
+                <phase>${skipPluginPhase}</phase>
+              </execution>
+
+              <execution>
+                <id>id.compile</id>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <compilerArgs>
+                    <arg>-sourcepath</arg>
+                    <arg>${project.build.sourceDirectory}</arg>
+                    <arg>-d</arg>
+                    <arg>${project.build.outputDirectory}</arg>
+                  </compilerArgs>
+                </configuration>
+              </execution>
+              <execution>
+                <id>id.testCompile</id>
+                <goals>
+                  <goal>testCompile</goal>
+                </goals>
+                <configuration>
+                  <compilerArgs>
+                    <arg>-sourcepath</arg>
+                    <arg>${project.build.testSourceDirectory}</arg>
+                    <arg>-d</arg>
+                    <arg>${project.build.testOutputDirectory}</arg>
+                  </compilerArgs>
+                </configuration>
+              </execution>
+            </executions>
+            <configuration>
+              <source>${java.version}</source>
+              <target>${java.version}</target>
+              <fork>true</fork>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.6</version>
+            <executions>
+              <execution>
+                <id>default-resources</id>
+                <phase>${skipPluginPhase}</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>default-testResources</id>
+                <phase>${skipPluginPhase}</phase>
+                <goals>
+                  <goal>testResources</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!--build jar with all dependencies-->
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring-boot.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>repackage</goal>
+                </goals>
+                <configuration>
+                  <mainClass>
+                    ${exec.mainClass}
+                  </mainClass>
+                  <attach>false</attach>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!--PROFILE FOR PRODUCTION-->
+    <profile>
+      <id>prod</id>
+      <activation>
+        <property>
+          <name>environment</name>
+          <value>prod</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>id.copyResources</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <copy todir="${project.build.outputDirectory}">
+                      <fileset dir="src/main/resources/prod"/>
+                    </copy>
+                    <copy todir="${project.build.outputDirectory}">
+                      <fileset dir="src/main/resources/config"/>
+                    </copy>
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <executions>
+              <execution>
+                <id>default-compile</id>
+                <phase>${skipPluginPhase}</phase>
+              </execution>
+              <execution>
+                <id>default-testCompile</id>
+                <phase>${skipPluginPhase}</phase>
+              </execution>
+
+              <execution>
+                <id>id.compile</id>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <compilerArgs>
+                    <arg>-sourcepath</arg>
+                    <arg>${project.build.sourceDirectory}</arg>
+                    <arg>-d</arg>
+                    <arg>${project.build.outputDirectory}</arg>
+                  </compilerArgs>
+                </configuration>
+              </execution>
+            </executions>
+            <configuration>
+              <source>${java.version}</source>
+              <target>${java.version}</target>
+              <fork>true</fork>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.6</version>
+            <executions>
+              <execution>
+                <id>default-resources</id>
+                <phase>${skipPluginPhase}</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>default-testResources</id>
+                <phase>${skipPluginPhase}</phase>
+                <goals>
+                  <goal>testResources</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- build jar with all dependencies-->
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring-boot.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>repackage</goal>
+                </goals>
+                <configuration>
+                  <mainClass>
+                    ${exec.mainClass}
+                  </mainClass>
+                  <attach>false</attach>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

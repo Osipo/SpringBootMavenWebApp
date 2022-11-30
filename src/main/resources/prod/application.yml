@@ -1,0 +1,51 @@
+spring:
+  web:
+    resources:
+      add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+    pathmatch:
+      use-suffix: true
+      matching-strategy: ant-path-matcher
+  config:
+    withXml: true
+    activate:
+      on-profile: prod
+miscellaneous:
+  config:
+    name: 'prod'
+db:
+  connections:
+    -
+      driver-class-name: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+      protocol: 'jdbc:sqlserver'
+      ip: '192.168.0.12'
+      catalog: 'database name'
+      login: 'sql authentication login'
+      password: 'and password'
+      integratedSecurity: false
+jpa:
+  hibernate:
+    enhancer:
+      dirtyTracking: false
+      lazyInitialization: false
+      associationManagement: false
+    props:
+      -
+        show-sql: true
+        ddl-auto: create-drop
+        dialect: 'org.hibernate.dialect.SQLServer2012Dialect'
+server:
+  port: 8080
+  ignoreAcceptHeader: false
+  queryParamAcceptName: 'mediaType'
+  acceptFromQueryParam: true
+  acceptFromExtension: false
+  defaultMediaType: 'application/json'
+  error:
+    whitelabel:
+      enabled: false
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: on_trace_param
+    include-exception: false
